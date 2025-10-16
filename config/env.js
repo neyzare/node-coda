@@ -14,8 +14,7 @@ dotenv.config({ path: join(__dirname, '..', '.env') })
 
 // Validation des variables requises
 const requiredEnvVars = [
-  'DATABASE_URL',
-  'JWT_SECRET'
+  'labonneclefsecretchut'
 ]
 
 for (const envVar of requiredEnvVars) {
@@ -24,10 +23,16 @@ for (const envVar of requiredEnvVars) {
   }
 }
 
+// DATABASE_URL avec fallback sur MYSQL_ADDON_URI (pour Clever Cloud)
+const databaseUrl = process.env.DATABASE_URL || process.env.MYSQL_ADDON_URI
+if (!databaseUrl) {
+  throw new Error('Variable d\'environnement manquante: DATABASE_URL ou MYSQL_ADDON_URI')
+}
+
 export const config = {
   // Base de données
   database: {
-    url: process.env.DATABASE_URL
+    url: databaseUrl
   },
 
   // Serveur
