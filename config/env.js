@@ -37,9 +37,9 @@ export const config = {
 
   // Serveur
   server: {
-    port: parseInt(process.env.PORT || '3000', 10),
-    host: process.env.HOST || '0.0.0.0',
-    nodeEnv: process.env.NODE_ENV || 'development'
+    port: parseInt((process.env.PORT || '3000').trim(), 10),
+    host: (process.env.HOST || '0.0.0.0').trim(),
+    nodeEnv: (process.env.NODE_ENV || 'development').trim()
   },
 
   // JWT
