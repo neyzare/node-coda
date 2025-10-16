@@ -24,7 +24,7 @@ for (const envVar of requiredEnvVars) {
 }
 
 // DATABASE_URL avec fallback sur MYSQL_ADDON_URI (pour Clever Cloud)
-const databaseUrl = process.env.DATABASE_URL || process.env.MYSQL_ADDON_URI
+const databaseUrl = (process.env.DATABASE_URL || process.env.MYSQL_ADDON_URI)?.trim()
 if (!databaseUrl) {
   throw new Error('Variable d\'environnement manquante: DATABASE_URL ou MYSQL_ADDON_URI')
 }
