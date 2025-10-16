@@ -14,7 +14,7 @@ dotenv.config({ path: join(__dirname, '..', '.env') })
 
 // Validation des variables requises
 const requiredEnvVars = [
-  'labonneclefsecretchut'
+  'JWT_SECRET'
 ]
 
 for (const envVar of requiredEnvVars) {
