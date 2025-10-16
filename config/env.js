@@ -44,25 +44,25 @@ export const config = {
 
   // JWT
   jwt: {
-    secret: process.env.JWT_SECRET,
-    expiresIn: process.env.JWT_EXPIRES_IN || '7d'
+    secret: process.env.JWT_SECRET?.trim(),
+    expiresIn: (process.env.JWT_EXPIRES_IN || '7d').trim()
   },
 
   // Bcrypt
   bcrypt: {
-    rounds: parseInt(process.env.BCRYPT_ROUNDS || '10', 10)
+    rounds: parseInt((process.env.BCRYPT_ROUNDS || '10').trim(), 10)
   },
 
   // Logs
   logs: {
-    level: process.env.LOG_LEVEL || 'info',
-    prettyPrint: process.env.PRETTY_PRINT === 'true'
+    level: (process.env.LOG_LEVEL || 'info').trim(),
+    prettyPrint: process.env.PRETTY_PRINT?.trim() === 'true'
   },
 
   // Helpers
-  isDevelopment: () => process.env.NODE_ENV === 'development',
-  isProduction: () => process.env.NODE_ENV === 'production',
-  isTest: () => process.env.NODE_ENV === 'test'
+  isDevelopment: () => process.env.NODE_ENV?.trim() === 'development',
+  isProduction: () => process.env.NODE_ENV?.trim() === 'production',
+  isTest: () => process.env.NODE_ENV?.trim() === 'test'
 }
 
 // Validation des types
